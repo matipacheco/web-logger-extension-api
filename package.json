@@ -1,0 +1,9 @@
+{
+  "name": "web-logger-extension-api",
+  "version": "1.0.0",
+  "description": "I log with my little... well... API",
+  "main": "index.js",
+  "repository": "https://github.com/matipacheco/web-logger-extension-api",
+  "author": "El Mati",
+  "license": "MIT"
+}
