@@ -7,7 +7,7 @@ const express = require("express");
 const app     = express();
 
 app.post("/log", (request, response) => {
-  database = openConnection();
+  let database = openConnection();
   closeConnection(database);
   response.send("POST received!");
 });
