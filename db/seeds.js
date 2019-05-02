@@ -1,9 +1,6 @@
-import {
-  openConnection,
-  closeConnection
-} from "./database_conector";
+let database_connector = require("./database_conector");
 
-let database = openConnection();
+let database = database_connector.openConnection();
 
 database.run(
   "CREATE TABLE network_logs("  +
@@ -14,4 +11,4 @@ database.run(
   ")"
 );
 
-closeConnection(database);
+database_connector.closeConnection(database);
