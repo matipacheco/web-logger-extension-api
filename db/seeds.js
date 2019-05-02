@@ -1,6 +1,5 @@
-let database_connector = require("./database_conector");
-
-let database = database_connector.openConnection();
+let databaseHandler = require("./database_handler");
+let database        = databaseHandler.openConnection();
 
 database.run(
   "CREATE TABLE network_logs("  +
@@ -11,4 +10,4 @@ database.run(
   ")"
 );
 
-database_connector.closeConnection(database);
+databaseHandler.closeConnection(database);
