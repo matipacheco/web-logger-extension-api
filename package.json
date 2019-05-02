@@ -5,5 +5,9 @@
   "main": "index.js",
   "repository": "https://github.com/matipacheco/web-logger-extension-api",
   "author": "El Mati",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.4",
+    "sqlite3": "^4.0.6"
+  }
 }
