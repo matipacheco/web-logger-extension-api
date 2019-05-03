@@ -29,11 +29,11 @@ function closeConnection (database) {
  * @param url
  * @param content
  */
-function insert(date, url, content) {
+function insert(values) {
   let database    = openConnection();
   let insertQuery = "INSERT INTO network_logs(date, url, content) VALUES (?, ?, ?)";
 
-  database.run(insertQuery, [date, url, content], (error) => {
+  database.run(insertQuery, values, (error) => {
     if (error) { throw error }
   });
 

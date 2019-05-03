@@ -3,6 +3,8 @@ const app     = express();
 
 let databaseHandler = require("./db/database_handler");
 
+app.use(express.json());
+
 
 app.get("/", (request, response) => {
   databaseHandler.selectAll((rows) => {
@@ -11,8 +13,10 @@ app.get("/", (request, response) => {
 });
 
 app.post("/register_log", (request, response) => {
-  //databaseHandler.insert(request.body.....)
-  response.send("POST received!");
+  console.log(request.body);
+  
+  databaseHandler.insert(Object.values(request.body));
+  response.send();
 });
 
 
