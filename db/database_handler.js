@@ -25,13 +25,11 @@ function closeConnection (database) {
 
 /**
  * insert: Creates a row in the network_los database
- * @param date
- * @param url
- * @param content
+ * @param values
  */
 function insert(values) {
   let database    = openConnection();
-  let insertQuery = "INSERT INTO network_logs(date, url, content) VALUES (?, ?, ?)";
+  let insertQuery = "INSERT INTO network_logs(date, type, method, url, content) VALUES (?, ?, ?, ?, ?)";
 
   database.run(insertQuery, values, (error) => {
     if (error) { throw error }
