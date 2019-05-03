@@ -1,4 +1,4 @@
-const path = require('path');
+const path = require("path");
 const logsDatabasePath = path.resolve(__dirname, 'logs_database.db');
 
 const sqlite3 = require("sqlite3").verbose();
@@ -9,7 +9,7 @@ const sqlite3 = require("sqlite3").verbose();
  */
 function openConnection () {
   return new sqlite3.Database(logsDatabasePath, sqlite3.OPEN_READWRITE, (error) => {
-    console.log(error);
+    if (error) { throw error }
   });
 }
 
@@ -19,7 +19,7 @@ function openConnection () {
  */
 function closeConnection (database) {
   database.close((error) => {
-    console.log(error);
+    if (error) { throw error }
   });
 }
 
@@ -34,23 +34,27 @@ function insert(date, url, content) {
   let insertQuery = "INSERT INTO network_logs(date, url, content) VALUES (?, ?, ?)";
 
   database.run(insertQuery, [date, url, content], (error) => {
-    console.log(error);
+    if (error) { throw error }
   });
 
   closeConnection(database);
 }
 
-function selectAll() {
+/**
+ * selectAll: Returns all network logs.
+ * @param callback
+ */
+function selectAll(callback) {
   let database    = openConnection();
   let selectQuery = "SELECT * FROM network_logs";
 
-  let allLogs = database.run(selectQuery, (error) => {
-    console.log(error);
+  database.all(selectQuery, [], (error, rows) => {
+    if (error) { throw error }
+
+    callback(rows);
   });
 
   closeConnection(database);
-
-  return allLogs;
 }
 
 module.exports.openConnection  = openConnection;

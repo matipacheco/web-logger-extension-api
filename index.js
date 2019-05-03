@@ -3,8 +3,11 @@ const app     = express();
 
 let databaseHandler = require("./db/database_handler");
 
+
 app.get("/", (request, response) => {
-  response.send(databaseHandler.selectAll());
+  databaseHandler.selectAll((rows) => {
+    response.send(rows);
+  });
 });
 
 app.post("/register_log", (request, response) => {
@@ -14,6 +17,6 @@ app.post("/register_log", (request, response) => {
 
 
 
-app.listen(3000, () => {
-  console.log("Server running on port 3000");
+app.listen(process.env.PORT || 3000, () => {
+  console.log("Server running!");
 });
